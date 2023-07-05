@@ -27,6 +27,7 @@ app.get('/gpt/:text', async (req, res) => {
     console.log(process.env.OPENAI_API_KEY)
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
+      organization: "org-stasikos-in-ua",
     });
     const openai = new OpenAIApi(configuration);
 
