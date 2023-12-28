@@ -20,9 +20,14 @@ fs.readFile("./file_context.txt", 'utf8', function(err, data) {
   file_context = data;
 });
 
-app.get('/gpt/:text', async (req, res) => {
+app.get('/gpt/:username asked :text', async (req, res) => {
     const text = req.params.text
+    const username = req.params.username
     const { Configuration, OpenAIApi } = require("openai");
+    const messages = [
+        {role: "system", content: file_context},
+        {role: "user", content: text, name: username}
+    ];
 
     console.log(process.env.OPENAI_API_KEY)
     const configuration = new Configuration({
@@ -35,7 +40,7 @@ app.get('/gpt/:text', async (req, res) => {
     
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      prompt: prompt,
+      messages: messages,
       temperature: 0.5,
       max_tokens: 128,
       top_p: 1,
