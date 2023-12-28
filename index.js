@@ -20,7 +20,7 @@ fs.readFile("./file_context.txt", 'utf8', function(err, data) {
   file_context = data;
 });
 
-app.get('/gpt/:username asked :text', async (req, res) => {
+app.get('/gpt/:text', async (req, res) => {
     const text = req.params.text
     const username = req.params.username
     const { Configuration, OpenAIApi } = require("openai");
