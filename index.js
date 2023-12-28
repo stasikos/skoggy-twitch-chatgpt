@@ -22,11 +22,10 @@ fs.readFile("./file_context.txt", 'utf8', function(err, data) {
 
 app.get('/gpt/:text', async (req, res) => {
     const text = req.params.text
-    const username = req.params.username
     const { Configuration, OpenAIApi } = require("openai");
     const messages = [
         {role: "system", content: file_context},
-        {role: "user", content: text, name: username}
+        {role: "user", content: text}
     ];
 
     console.log(process.env.OPENAI_API_KEY)
