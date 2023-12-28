@@ -33,7 +33,7 @@ app.get('/gpt/:text', async (req, res) => {
     const prompt = file_context + "\n\nQ:" + text + "\nA:";
     console.log(prompt);
     
-    const response = await openai.complete({
+    const response = await openai.createCompletion({
       model: "gpt-3.5-turbo",
       prompt: prompt,
       temperature: 0.5,
