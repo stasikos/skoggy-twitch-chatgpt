@@ -27,7 +27,6 @@ app.get('/gpt/:text', async (req, res) => {
     console.log(process.env.OPENAI_API_KEY)
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
-      organization: process.env.OPENAI_API_ORG,
     });
     const openai = new OpenAIApi(configuration);
 
@@ -35,7 +34,7 @@ app.get('/gpt/:text', async (req, res) => {
     console.log(prompt);
     
     const response = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: "gpt-3.5-turbo",
       prompt: prompt,
       temperature: 0.5,
       max_tokens: 128,
