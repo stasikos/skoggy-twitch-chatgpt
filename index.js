@@ -48,7 +48,7 @@ app.get('/gpt/:text', async (req, res) => {
     });
     console.log(response);
     if (response.data.choices) {
-        res.send(response.data.choices[0].text)
+        res.send(response.data.choices[0].['message']['content'])
     } else {
         res.send("Something went wrong. Try again later!")
     }
