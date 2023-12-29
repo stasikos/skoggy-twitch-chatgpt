@@ -46,6 +46,7 @@ app.get('/gpt/:text', async (req, res) => {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
+    console.log(response);
     if (response.data.choices) {
         res.send(response.data.choices[0].text)
     } else {
