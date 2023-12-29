@@ -16,7 +16,6 @@ app.all('/', (req, res) => {
 let file_context = ""
 fs.readFile("./file_context.txt", 'utf8', function(err, data) {
   if (err) throw err;
-  console.log(file_context);
   file_context = data;
 });
 
@@ -28,7 +27,6 @@ app.get('/gpt/:text', async (req, res) => {
         {role: "user", content: text}
     ];
 
-    console.log(process.env.OPENAI_API_KEY)
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
@@ -46,7 +44,6 @@ app.get('/gpt/:text', async (req, res) => {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
-    console.log(response);
     if (response.data.choices) {
         res.send(response.data.choices[0].message.content)
     } else {
